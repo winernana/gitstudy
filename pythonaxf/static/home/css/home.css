@@ -57,11 +57,11 @@ footer .home .name {
 }
 
 /* 一定买 轮播图部分*/
-#mustbuySwiper{
+#buySwiper{
     width: 100%;
 }
 /* 关键是swiper的设置，slidesPerView个数*/
-#mustbuySwiper img{
+#buySwiper img{
     width:100%;
 }
 
@@ -215,5 +215,7 @@ footer .home .name {
     bottom: -0.5rem;
 }
 .main .main-wrapper .shoplist .shopitem button span{
+    display:inline-block;
+    height:0.2rem
 
 }
