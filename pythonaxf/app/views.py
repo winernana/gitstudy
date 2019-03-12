@@ -3,6 +3,7 @@ import random
 import time
 
 from django.core.cache import cache
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 
@@ -46,7 +47,8 @@ def home(request):
 
 
 # def market(request,categoryid=104749):
-def market(request):
+def market(request,childid='0',sortid='0'):
+
     # 分类信息
     foodtypes = Foodtype.objects.all()
 
@@ -62,7 +64,22 @@ def market(request):
     # 根据index获取对应的分类 ID
     categoryid=foodtypes[index].typeid
     # 根据分类ID获取对应的分类信息
-    goods_list = Goods.objects.filter(categoryid=categoryid)
+    # goods_list = Goods.objects.filter(categoryid=categoryid)
+
+    # 子类
+    if childid == '0':
+        goods_list = Goods.objects.filter(categoryid=categoryid)
+    else:
+        goods_list = Goods.objects.filter(categoryid=categoryid).filter(childcid=childid)
+
+    # 排序
+    # 0默认综合排序   1销量排序     2价格最低   3价格最高
+    if sortid == '1':
+        goods_list = goods_list.order_by('-productnum')
+    elif sortid == '2':
+        goods_list = goods_list.order_by('price')
+    elif sortid == '3':
+        goods_list = goods_list.order_by('-price')
 
     # 获取子类信息
     childtypenames = foodtypes[index].childtypenames
@@ -85,6 +102,7 @@ def market(request):
         'foodtypes':foodtypes,
         'goods_list':goods_list,
         'childtypelist':childtypelist,
+        'childid':childid,
     }
 
     return render(request,'market/market.html',context=data1)

@@ -51,28 +51,49 @@ $(function () {
         // 取反
         categoryshow = !categoryshow
         categoryshow ? categoryviewshow():categoryviewhide()
+
+        console.log(子类点击)
     })
         function categoryviewshow(){
         $('.category-view').show()
         $('#category-bt i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down')
+
+            sortviewhide()
+            sortshow = false
         }
         function categoryviewhide() {
         $('.category-view').hide()
         $('#category-bt i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up')
+
         }
 
     // 排序
     var sortshow = false
     $('#sort-bt').click(function () {
         sortshow = !sortshow
-        sortshow ? sortviewshow():sortviewhide()
+        sortshow ? sortviewshow() : sortviewhide()
+
+        console.log(排序点击)
     })
         function sortviewshow(){
         $('.sort-view').show()
         $('#sort-bt i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down')
+
+            categoryviewhide()
+            categoryshow = false
         }
         function sortviewhide() {
         $('.sort-view').hide()
         $('#sort-bt i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up')
         }
+
+        // 灰色蒙层
+    $('.bounce-view ').click(function () {
+        sortviewhide()
+        sortshow = false
+
+        categoryviewhide()
+        categoryshow = false
+    })
+
 })

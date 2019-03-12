@@ -29,7 +29,7 @@
         </div>
         <form action="{% url 'axf:register' %}" method="post">
             {% csrf_token %}
-            <div class="input-group">
+            <div class="input-group" id="email">
                 <span class="input-group-addon" >邮箱</span>
                 <input type="text" class="form-control" placeholder="163邮箱|QQ邮箱..." name="email">
             </div>
