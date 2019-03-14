@@ -23,7 +23,9 @@
             <div class="user-content">
                 <p>
                     <span class="glyphicon glyphicon-user"></span>
-                    <a href="{% url 'axf:login' %}">{{ user.name|default:'未登录' }}</a>
+                    <a  id="login-i" >
+                        {{ user.name|default:'未登录' }}
+                    </a>
                 </p>
                 <p>
                     <span class="glyphicon glyphicon-piggy-bank"></span>
@@ -35,19 +37,22 @@
         <div class="collect">
             <span class="glyphicon glyphicon-star"></span>
             <span>商品收藏</span>
-
         </div>
+
         <div class="other">
             <section class="my">
                 <span>我的订单</span>
-                <a href="#" class="">查看全部订单<i class="glyphicon glyphicon-chevron-right"></i></a>
+                <a href="{% url 'axf:orderlist' %}" >查看全部订单 <i class="glyphicon glyphicon-chevron-right" ></i></a>
             </section>
             <section>
                 <ul>
                     <li>
                         <a href="#">
-                            <dl>
-                                <dt><span class="glyphicon glyphicon-yen"></span></dt>
+                            <dl class="item">
+                                <dt>
+                                    <span class="glyphicon glyphicon-gift"></span>
+                                    <span class="badge">{{ waitpay }}</span>
+                                </dt>
                                 <dd>待付款</dd>
                             </dl>
                         </a>
@@ -55,7 +60,10 @@
                     <li>
                         <a href="#">
                             <dl>
-                                <dt><span class="glyphicon glyphicon-hourglass"></span></dt>
+                                <dt class="item">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="badge">{{ paydone }}</span>
+                                </dt>
                                 <dd>待收货</dd>
                             </dl>
                         </a>
